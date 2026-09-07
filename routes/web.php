@@ -136,7 +136,6 @@ Route::get('/',
 )->name('home');
 
 
-Route::middleware('student')->group(function () {
 Route::middleware('is.student')->group(function () {
 
     Route::get(
@@ -148,6 +147,22 @@ Route::middleware('is.student')->group(function () {
         '/logout',
         [StudentLoginController::class, 'logout']
     )->name('student.logout');
+
+    Route::get('/student/register/create', function () {
+        return 'ระบบลงทะเบียนเรียน (กำลังพัฒนา)';
+    })->name('student.course_register.create');
+
+    Route::get('/student/register/history', function () {
+        return 'ประวัติการลงทะเบียน (กำลังพัฒนา)';
+    })->name('student.course_register.history');
+
+    Route::get('/student/grades', function () {
+        return 'ผลการเรียน (กำลังพัฒนา)';
+    })->name('student.grades');
+
+    Route::get('/student/gpa', function () {
+        return 'เกรดเฉลี่ยสะสม (กำลังพัฒนา)';
+    })->name('student.gpa');
 
 });
 

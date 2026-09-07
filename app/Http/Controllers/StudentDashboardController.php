@@ -61,7 +61,7 @@ class StudentDashboardController extends Controller
         $earnedCredits = $gradedDetails->filter(fn($d) => $d->grade !== 'F')
             ->sum(fn($d) => $d->subject->credit ?? 0);
 
-        return view('students.dashboard', compact(
+        return view('student-dashboard', compact(
             'student',
             'currentSemester',
             'currentSubjects',

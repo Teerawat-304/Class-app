@@ -181,15 +181,19 @@
                     <h6 class="fw-bold mb-3"><i class="bi bi-grid me-2 text-primary"></i>เมนูลัด</h6>
                     <div class="d-grid gap-2">
                         <a href="{{ route('student.course_register.create') }}" class="quick-link">
+                        <a href="{{ Route::has('student.course_register.create') ? route('student.course_register.create') : '#' }}" class="quick-link">
                             <i class="bi bi-plus-circle me-2"></i>ลงทะเบียนเรียน
                         </a>
                         <a href="{{ route('student.course_register.history') }}" class="quick-link">
+                        <a href="{{ Route::has('student.course_register.history') ? route('student.course_register.history') : '#' }}" class="quick-link">
                             <i class="bi bi-clock-history me-2"></i>ประวัติการลงทะเบียน
                         </a>
                         <a href="{{ route('student.grades') }}" class="quick-link">
+                        <a href="{{ Route::has('student.grades') ? route('student.grades') : '#' }}" class="quick-link">
                             <i class="bi bi-journal-check me-2"></i>ผลการเรียน
                         </a>
                         <a href="{{ route('student.gpa') }}" class="quick-link">
+                        <a href="{{ Route::has('student.gpa') ? route('student.gpa') : '#' }}" class="quick-link">
                             <i class="bi bi-bar-chart-line me-2"></i>เกรดเฉลี่ยสะสม
                         </a>
                     </div>
