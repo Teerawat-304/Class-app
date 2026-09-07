@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Faculty;
 //use App\Models\Student;
 use App\Models\Program;
-use App\Models\Students;
+use App\Models\Student;
 //use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +21,7 @@ class StudentController extends Controller
         // Logic to retrieve and display a list of students
         //return ('Hello from index controller ');
         // $students = Student::all(); // Fetch all students from the database
-        $query = Students::with(['faculty', 'program'])
+        $query = Student::with(['faculty', 'program'])
             ->orderBy('student_id', 'asc');
 
             // ฟังก์ชันในการค้นหาสามารถค้นหาด้วยชื่อ ไอดี สาขา คณะ
@@ -42,7 +42,7 @@ class StudentController extends Controller
         $students     = $query->paginate(10)->withQueryString();
         $totalFaculties = Faculty::count();
         $totalPrograms = Program::count();
-        $totalStudents = Students::count();
+        $totalStudents = Student::count();
 
         $totalFaculties = DB::table('faculty')->count();
         $totalPrograms = DB::table('program')->count();
@@ -80,7 +80,7 @@ class StudentController extends Controller
 
         $validated['password'] = Hash::make($validated['password']);
 
-        Students::create($validated);
+        Student::create($validated);
 
         return redirect('students')->with('success', 'บันทึกข้อมูลนักศึกษาเรียบร้อยแล้ว');
     }
@@ -88,7 +88,7 @@ class StudentController extends Controller
     //edit student
     public function edit($student_id)
     {
-        $student   = Students::findOrFail($student_id);
+        $student   = Student::findOrFail($student_id);
         $faculties = Faculty::orderBy('faculty_name')->get();
 
         return view('students.updateForm', compact('student', 'faculties'));
@@ -97,7 +97,7 @@ class StudentController extends Controller
     // Update student
     public function update(Request $request, $student_id)
     {
-        $student = Students::findOrFail($student_id);
+        $student = Student::findOrFail($student_id);
 
         $validated = $request->validate([
             'student_name' => 'required|string|max:100',
@@ -117,7 +117,7 @@ class StudentController extends Controller
     //delete student
     public function deletestudent($student_id)
     {
-        $student = Students::findOrFail($student_id);
+        $student = Student::findOrFail($student_id);
 
         $student->delete();
 

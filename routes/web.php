@@ -15,7 +15,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentDashboardController;
 use App\Models\Faculty;
 use App\Models\Program;
-use App\Models\Students;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 
