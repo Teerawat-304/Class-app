@@ -137,6 +137,7 @@ Route::get('/',
 
 
 Route::middleware('student')->group(function () {
+Route::middleware('is.student')->group(function () {
 
     Route::get(
         '/student/dashboard',
